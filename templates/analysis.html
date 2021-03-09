@@ -1,0 +1,113 @@
+{% extends 'forex_conversion.html' %}
+{% block analysis %}
+<!-- PASS DATA TO JS -->
+<div id="data"> {{ data }} </div> 
+<script> const data = JSON.parse('{{ data| tojson | safe}}');</script>
+
+<!--* Card init *-->
+<div class="container">
+
+    <div class="row my-3">
+        <div class="col text-center">
+            <h4>Currency Trends</h4>
+        </div>
+    </div>
+    <div class="row my-0">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                
+                    <canvas id="chLine" height="150"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="stats">
+    <div class="blue">
+        <strong>CONV RATE (%)</strong> {{ conv_rate }}
+    </div>
+    
+    <div>
+        <strong>PAST MONTH (%)</strong> 
+        {% if month_delta > 0 %}
+        <i class="fas fa-arrow-alt-circle-up"></i>
+        {% elif month_delta == 0 %}
+        {% else %}
+        <i class="fas fa-arrow-alt-circle-down"></i>
+        {% endif %} 
+        {{ month_delta }}
+    </div>
+
+    <div>
+        <strong>PAST 1 YEAR (%)</strong>
+        {% if year_delta > 0 %}
+        <i class="fas fa-arrow-alt-circle-up"></i>
+        {% elif year_delta == 0 %}
+        {% else %}
+        <i class="fas fa-arrow-alt-circle-down"></i>
+        {% endif %} 
+        {{ year_delta }}
+    </div>
+
+</div>
+
+<div class="stats">
+
+    <div>
+        <strong>PAST 5 YEARS</strong>
+        {% if five_year_delta > 0 %}
+        <i class="fas fa-arrow-alt-circle-up"></i>
+        {% elif five_year_delta == 0 %}
+        {% else %}
+        <i class="fas fa-arrow-alt-circle-down"></i>
+        {% endif %} 
+        {{ five_year_delta }}
+    </div>
+
+    <div>
+        <strong>PAST 10 YEARS</strong>
+        {% if ten_year_delta > 0 %}
+        <i class="fas fa-arrow-alt-circle-up"></i>
+        {% elif ten_year_delta == 0 %}
+        {% else %}
+        <i class="fas fa-arrow-alt-circle-down"></i>
+        {% endif %} 
+        {{ ten_year_delta }}
+    </div>
+
+    <div>
+        <strong>Est BANK FEE (2%)</strong> 
+        <i class="fas fa-arrow-alt-circle-right green"></i>
+        {{ symbol_to_country }}
+        {{ conv_result_bank }}
+    </div>
+
+</div>
+
+<div class="stats">
+
+    <div>
+        <strong>Est ATM FEE (2%)</strong> 
+        <i class="fas fa-arrow-alt-circle-right green"></i>
+        {{ symbol_to_country }}
+        {{ conv_result_atm }}
+    </div>
+
+    <div>
+        <strong>Est CREDIT FEE (3%)</strong> 
+        <i class="fas fa-arrow-alt-circle-right yellow"></i>
+        {{ symbol_to_country }}
+        {{ conv_result_credit }}
+    </div>
+
+    <div>
+        <strong>Est KIOSK FEE (5%)</strong> 
+        <i class="fas fa-arrow-alt-circle-right red"></i>
+        {{ symbol_to_country }}
+        {{ conv_result_kiosk }}
+    </div>
+   
+</div>
+{% endblock %}

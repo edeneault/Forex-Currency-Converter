@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid bg-light text-dark col-sm-10 mt-4">
+    <div class="row justify-content-center py-1 ">
+        
+            <div class="container-fluid col-sm-6 p-0 m-0" id="flash-messages">
+                {% for message in get_flashed_messages() %}
+                <div class="alert alert-warning alert-dismissible fade show card col-sm-12" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}    
+            </div>
+    </div>
+    <!-- <form class="form-group " action="/conversion"> -->
+        <form id="conversion-form" class="form-group" action="/conversion" >
+        <div class="row justify-content-center py-1 ">
+            <div class="col-sm-6 input-group">
+                <div class="input-group-prepend">
+                    <label class="btn btn-sm btn-dark custom">Converting from</label>
+                </div>
+                <select class="custom-select nav-item form-control form-control-sm" id="from-country" name="from-country">
+                    {% for conv_code in session['curr_codes_list'] %}
+                    <option value="{{conv_code}}">{{conv_code}}</option>
+                    {% endfor %}
+                </select>   
+            </div>
+        </div>
+        <div class="row justify-content-center py-1 ">
+            <div class="col-sm-6 input-group">
+                <div class="input-group-prepend">
+                    <label class="btn btn-sm btn-dark custom">Converting to</label>
+                </div>
+                <select class="custom-select nav-item form-control  form-control-sm" id="to-country" name="to-country">
+                    {% for cvrt_code in session['curr_codes_list'] %}
+                    <option class="select-size" value="{{cvrt_code}}">{{cvrt_code}}</option>
+                    {% endfor %}
+                </select>   
+            </div>
+        </div>
+        <div class="row justify-content-center ">
+            <div class="col-sm-6 ">
+                <div class="input-group py-1">   
+                    
+                    <input class="form-control form-control-sm text-dark col-sm-5 my-1" id="amount" type="text" name="amount" placeholder="Enter amount:">
+                    <label for="amount" class="d-flex align-self-center px-3 pt-2 ">Amount to Convert</label>
+                </div>
+                <div class="py-1">
+                    <button class="btn btn-sm Cbtn-primary convert" >CONVERT</button>
+                </div>
+            </div>
+        </div>        
+    </form>
+       
+    {% block conversion %} {% endblock %}
+</div>
+
+{% endblock %}
