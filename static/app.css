@@ -2,6 +2,7 @@
     width: 150px !important;
 }
 
+
 .tile {
     width: 100%;
 
@@ -61,7 +62,7 @@ div.bg-image {
 }
 
 .dates {
-    border: 1px solid #ebeff2;
+    border: 1px solid #cacaca;
     border-radius: 5px;
     padding: 20px 0px;
     margin: 10px 20px;
@@ -86,14 +87,6 @@ div.bg-image {
     font-weight: 700;
 }
 
-.dates span {
-    width: 1px;
-    height: 40px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    background: #ebeff2;
-}
 
 .stats {
     border-top: 1px solid #ebeff2;
@@ -120,7 +113,7 @@ div.bg-image {
 div.footer {
     text-align: right;
     position: relative;
-    margin: 20px 5px;
+    margin: 20px 20px;
 }
 
 div.footer a.Cbtn {
