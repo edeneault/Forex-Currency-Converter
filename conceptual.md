@@ -1,4 +1,5 @@
 ### Conceptual Exercise
+by: Etienne Deneault
 
 Answer the following questions below:
 
@@ -12,19 +13,14 @@ Answer the following questions below:
     * Python: functions will not accept additional arguments and do not explicitely ``return`` return ``None``
     * Python: has docstrings for built in documentation ``dir()``
     * Python: comments ``#``, js: ``/`` 
-
     <br>
-
 - Given a dictionary like ``{"a": 1, "b": 2}``: , list two ways you
   can try to get a missing key (like "c") *without* your programming
   crashing.
 
     1. ``c = my_dict.get("c", 0)``
     2. ``key = "c" if key in my_dict: c = myDict.get("c") return c``
-
     <br>
-
-
 - What is a unit test?
     * Unit tests are to test code in isolated small pieces
     <br>

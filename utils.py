@@ -149,7 +149,7 @@ def date_ten_years_past():
     date_obj = datetime.strptime(date_string, '%Y-%m-%d %H:%M:%S.%f')
     return date_obj
 
-
+### UTILITY FUNCTION(S) ###
 def is_number(amount):
     try:
         float(amount) or int(amount)

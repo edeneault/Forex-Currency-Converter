@@ -82,6 +82,8 @@ def show_conversion_analysis():
     name_to_country = currency_get_name(to_country)
     symbol_from_country = currency_get_symbol(from_country)
     name_from_country = currency_get_name(from_country)
+    
+    ### DATE FINDER FUNCTIONS ###
     past_one_year = date_one_year_past()
     past_one_month = date_one_month_past()
     past_five_years = date_five_years_past()
