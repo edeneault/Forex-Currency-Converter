@@ -1,6 +1,5 @@
 # from flask import Flask, request, render_template, session, jsonify
 import os
-from API_KEY import *
 from forex_python.converter import *
 
 import json
