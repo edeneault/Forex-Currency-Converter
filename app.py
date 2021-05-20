@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, session, redirect, flash
 from flask_debugtoolbar import DebugToolbarExtension
 from datetime import datetime, date, time
 from decimal import *
-from forex_python.converter import CurrencyRates, CurrencyCodes
+# from forex_python.converter import CurrencyRates, CurrencyCodes
 from utils import *
 
 ### App and Debbugger init ###
@@ -13,20 +13,26 @@ app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 debug = DebugToolbarExtension(app)
 
+curr_codes_list = ["AED", "AFN", "ALL", "AMD", "ANG", "AOA", "ARS", "AUD", "AWG", "AZN", "BAM", "BBD", "BDT", "BGN", "BHD", "BIF", "BMD", "BND", "BOB", "BOV", "BRL", "BSD", "BTN", "BWP", "BYR", "BZD", "CAD", "CDF", "CHE", "CHF", "CHW", "CLF", "CLP", "CNY", "COP", "COU", "CRC", "CUC", "CUP", "CVE", "CZK", "DJF", "DKK", "DOP", "DZD", "EGP", "ERN", "ETB", "EUR", "FJD", "FKP", "GBP", "GEL", "GHS", "GIP", "GMD", "GNF", "GTQ", "GYD", "HKD", "HNL", "HRK", "HTG", "HUF", "IDR", "ILS", "INR", "IQD", "IRR", "ISK", "JMD", "JOD", "JPY", "KES", "KGS", "KHR", "KMF", "KPW", "KRW", "KWD", "KYD", "KZT", "LAK", "LBP", "LKR", "LRD", "LSL", "LTL",
+                   "LVL", "LYD", "MAD", "MDL", "MGA", "MKD", "MMK", "MNT", "MOP", "MRO", "MUR", "MVR", "MWK", "MXN", "MXV", "MYR", "MZN", "NAD", "NGN", "NIO", "NOK", "NPR", "NZD", "OMR", "PAB", "PEN", "PGK", "PHP", "PKR", "PLN", "PYG", "QAR", "RON", "RSD", "RUB", "RWF", "SAR", "SBD", "SCR", "SDG", "SEK", "SGD", "SHP", "SLL", "SOS", "SRD", "SSP", "STD", "SYP", "SZL", "THB", "TJS", "TMT", "TND", "TOP", "TRY", "TTD", "TWD", "TZS", "UAH", "UGX", "USD", "USN", "USS", "UYI", "UYU", "UZS", "VEF", "VND", "VUV", "WST", "XAF", "XAG", "XAU", "XBA", "XBB", "XBC", "XBD", "XCD", "XDR", "XFU", "XOF", "XPD", "XPF", "XPT", "XTS", "XXX", "YER", "ZAR", "ZMW"]
+
 #### APP ROUTES #####
 
 
 @app.route("/")
 def forex_converter_view():
     """ Displays the forex converter UI View """
-    curr_codes_list = sorted(currency_codes())
-    session['curr_codes_list'] = curr_codes_list
-    session['conversions'] = session.get("conversions", 0)
-    session['from-country'] = session.get("from-country", 0)
-    session['to-country'] = session.get("to-country", 0)
-    session['amount'] = session.get("amount", 0)
-    conversions = session.get("conversions", 0)
-    return render_template("forex_converter.html", curr_codes_list=curr_codes_list, conversions=conversions)
+    try:
+        curr_codes_list = curr_codes_list
+        session['curr_codes_list'] = curr_codes_list
+        session['conversions'] = session.get("conversions", 0)
+        session['from-country'] = session.get("from-country", 0)
+        session['to-country'] = session.get("to-country", 0)
+        session['amount'] = session.get("amount", 0)
+        conversions = session.get("conversions", 0)
+        return render_template("forex_converter.html", curr_codes_list=curr_codes_list, conversions=conversions)
+    except:
+        return render_template("forex_converter.html")
 
 
 @app.route("/conversion")
@@ -82,7 +88,7 @@ def show_conversion_analysis():
     name_to_country = currency_get_name(to_country)
     symbol_from_country = currency_get_symbol(from_country)
     name_from_country = currency_get_name(from_country)
-    
+
     ### DATE FINDER FUNCTIONS ###
     past_one_year = date_one_year_past()
     past_one_month = date_one_month_past()
