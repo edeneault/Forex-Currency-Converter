@@ -4,7 +4,7 @@ chardet==4.0.0
 click==7.1.2
 Flask==1.1.2
 Flask-DebugToolbar==0.11.0
-forex-python==1.5
+git+https://github.com/edeneault/forex-python.git
 gunicorn==20.1.0
 idna==2.10
 itsdangerous==1.1.0

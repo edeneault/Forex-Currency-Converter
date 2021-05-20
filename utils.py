@@ -1,5 +1,6 @@
 # from flask import Flask, request, render_template, session, jsonify
 import os
+from API_KEY import *
 from forex_python.converter import *
 
 import json
@@ -19,7 +20,7 @@ date_obj_test_date = datetime(2021, 1, 1, 18, 36, 28, 151012)
 getcontext().prec = 10
 
 ### CURRENCY RATES INSTANCES ###
-c = CurrencyRates()
+c = CurrencyRates(os.environ['FOREX_PYTHON_KEY'])
 c_dec = CurrencyRates(force_decimal=True)
 c_codes = CurrencyCodes()
 
